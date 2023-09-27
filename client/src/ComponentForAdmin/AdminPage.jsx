@@ -10,6 +10,7 @@ import axios from "axios";
 const AdminPage = ({ dataProduct ,getProducts}) => {
     const [viewAdmin, setViewAdmin] = useState('AllProduct')
     const [dataToUpdate, setDataToUpdate] = useState({})
+    const [dataSearched,setDataSearched]=useState(dataProduct)
 useEffect(()=>{
    getProducts() 
 },[])
@@ -20,6 +21,10 @@ console.log(x)
         .catch((err)=>console.log(err))
 
     }
+    const searchForPerfume=(x)=>{
+        var arr=dataProduct.filter(e=>e.name.includes(x))
+        setDataSearched(arr)
+          }
     const deleteProduct=(x)=>{
         axios.delete(`/api/product/deleteProduct/${x}`)
         .then(()=>{setViewAdmin('AllProduct'),getProducts()})
@@ -42,7 +47,7 @@ console.log(x)
             return <AddProduct addProduct={addProduct} />
         }
         if (viewAdmin === 'AllProduct') {
-            return <AllProduct GetDataToUpdate={GetDataToUpdate} setViewAdmin={setViewAdmin} dataProduct={dataProduct} />
+            return <AllProduct GetDataToUpdate={GetDataToUpdate} setViewAdmin={setViewAdmin} dataSearched={dataSearched} />
         }
         if (viewAdmin === 'UpdateAndDelete') {
             return <UpdateAndDelete deleteProduct={deleteProduct} updateProduct={updateProduct} dataToUpdate={dataToUpdate} dataProduct={dataProduct} />
@@ -53,9 +58,9 @@ console.log(x)
     return (
         <div>
 
-            <Nav setViewAdmin={setViewAdmin} />
+            <Nav searchForPerfume={searchForPerfume} setViewAdmin={setViewAdmin} />
             <div>{changeViewAdmin()}</div>
-            <h3>welcome Admin</h3>
+          
         </div>
     )
 }

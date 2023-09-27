@@ -1,10 +1,11 @@
 import React from "react";
-const Cart =({perfumeTobuy,removeFromCart,totalToPay})=>{
+const Cart =({perfumeTobuy,removeFromCart,totalToPay,confirmBuy})=>{
 return(<div>
   <div className="total">
    <div >You have {perfumeTobuy.length} articles </div>
-<button>Cancel All</button>
-<button>Confirm </button>
+<div>
+<button className="btn btn-danger" >Cancel All</button>
+<button className="btn btn-info" onClick={()=>confirmBuy()}>Confirm </button></div>
 <div>Total :{totalToPay()}DT</div></div>
  {perfumeTobuy.map((e,i) => {
         return (

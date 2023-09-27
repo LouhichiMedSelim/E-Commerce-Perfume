@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Nav =({setViewAdmin})=>{
+const Nav =({setViewAdmin,searchForPerfume})=>{
+  const[word,setWord]=useState('')
 
     return (<div>
         <nav className="navbar navbar-light bg-light">
   <div className="container-fluid">
-    <a className="navbar-brand" onClick={()=>setViewAdmin('AddProduct')}>AddProduct</a>
-    <a className="navbar-brand" onClick={()=>setViewAdmin('AllProduct')}>AllProduct</a>
-    <a className="navbar-brand">AllUsers</a>
+    <a className="navbar-brand" onClick={()=>setViewAdmin('AddProduct')}>Add Perfume</a>
+    <a className="navbar-brand" onClick={()=>setViewAdmin('AllProduct')}>All Perfumes</a>
+   
     <form className="d-flex">
-      <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-      <button className="btn btn-outline-success" type="submit">Search</button>
+      <input className="form-control me-2" onChange={(e)=>{setWord(e.target.value),searchForPerfume(word)}} type="search" placeholder="Search" aria-label="Search"/>
     </form>
   </div>
 </nav>

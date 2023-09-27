@@ -15,8 +15,8 @@ const UpdateAndDelete = ({ dataToUpdate, updateProduct,deleteProduct }) => {
                   <input defaultValue={dataToUpdate.quantity} onChange={(e) => setQuantity(e.target.value)} />
 
                   <button type="button" className="btn btn-secondary" >Close</button>
-                  <button type="button" onClick={() => updateProduct({name , imgUrl ,price,quantity }
-                        , dataToUpdate.name)} className="btn btn-primary">Save changes</button>
+                  <button type="submit" onClick={() => updateProduct({name , imgUrl ,price,quantity }
+                        , dataToUpdate._id)} className="btn btn-primary">Save changes</button>
 <button onClick={()=>deleteProduct(dataToUpdate.name)}>delete</button>
 
             </div>

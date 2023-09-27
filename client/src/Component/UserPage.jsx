@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Nav from "./subComponentUser/NavbarUser.jsx";
 import AllProduct from "./subComponentUser/Allproduct.jsx";
 import Cart from "./subComponentUser/Cart.jsx";
-const UserPage = ({ dataProduct }) => {
+import axios from "axios";
+const UserPage = ({ dataProduct ,getProducts}) => {
   const [viewUser, setViewUser] = useState('AllProduct')
   const [perfumeTobuy, setPerfumeToBuy] = useState([])
 const[dataSearched,setDataSearched]=useState(dataProduct)
+
 
   const addToCart = (x) => {
     var arr = perfumeTobuy
@@ -26,6 +28,15 @@ const[dataSearched,setDataSearched]=useState(dataProduct)
     setPerfumeToBuy(arr)
     setViewUser('AllProduct')
   }
+  const confirmBuy =()=>{
+    for(var i=0;i<perfumeTobuy.length;i++){
+      axios.put(`/api/product/updateProductQuantity/${perfumeTobuy[i].name}`)
+      .then(()=>console.log('upd'))
+      .catch((err)=>console.log(err))
+    }
+    setViewUser('AllProduct')
+    getProducts()
+  }
   const totalToPay = () => {
     var x=0
     for (var i = 0; i < perfumeTobuy.length; i++) {
@@ -43,7 +54,7 @@ setDataSearched(arr)
       return <AllProduct addToCart={addToCart} dataSearched={dataSearched} />
     }
     if (viewUser === 'Cart') {
-      return <Cart totalToPay={totalToPay} removeFromCart={removeFromCart} perfumeTobuy={perfumeTobuy} />
+      return <Cart confirmBuy={confirmBuy} totalToPay={totalToPay} removeFromCart={removeFromCart} perfumeTobuy={perfumeTobuy} />
     }
   }
 

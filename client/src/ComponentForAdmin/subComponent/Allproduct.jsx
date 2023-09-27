@@ -1,21 +1,29 @@
 import React from "react";
-const AllProduct =({dataProduct,GetDataToUpdate})=>{
+const AllProduct =({dataSearched,GetDataToUpdate})=>{
 return (
-    <div>
-        {dataProduct.map((e)=>{return (   
-                   <div key={e._id} className="card" style={{width: "18rem"}}>
+    <div > <div class="card-group">
+        {dataSearched.map((e)=>{return (   
+                   
        
-  <img src={e.imgUrl} className="card-img-top" />
-  <div className="card-body">
-    <h5 className="card-title">{e.name}</h5>
-    <p className="card-text">{e.price}</p>
-    <p className="card-text">{e.quantity}</p>
-    <button type="button" onClick={()=>GetDataToUpdate(e._id)}  className="btn btn-primary">Go somewhere</button>
+
+
+ 
+  <div class="card" key={e._id}>
+    <img class="card-img-top" src={e.imgUrl} alt="Card image cap"/>
+    <div class="card-body">
+      <h5 class="card-title">{e.name}</h5>
+      <p class="card-text">{e.quantity}</p>
+      <p class="card-text">{e.price}</p>
+      <button type="button" onClick={()=>GetDataToUpdate(e._id)}  className="btn btn-primary">Update Or Delete</button>
+    </div>
   </div>
+ 
 
 
- </div>)
-      })}
+
+
+)
+      })}</div>
     </div>
 )
 }

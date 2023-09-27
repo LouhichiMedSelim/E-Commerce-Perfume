@@ -22,7 +22,7 @@ const App = () => {
             return <AdminPage getProducts={getProducts} dataProduct={dataProduct} />
         }
         if (view === 'UserPage') {
-            return <UserPage dataProduct={dataProduct}/>
+            return <UserPage getProducts={getProducts} dataProduct={dataProduct}/>
         }
        
     }
