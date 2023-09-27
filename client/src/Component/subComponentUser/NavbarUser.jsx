@@ -1,13 +1,16 @@
-import React from "react";
-const Nav =()=>{
+import React, { useState } from "react";
+const Nav =({setViewUser,searchForPerfume,dataProduct,setDataSearched})=>{
+  const[word,setWord]=useState('')
     return (<div>
         <nav className="navbar navbar-light bg-light">
   <div className="container-fluid">
     <p className="navbar-brand">Louhichi's Fragence</p>
-    <a className="navbar-brand">     </a>
+    <a className="navbar-brand" onClick={()=>{setViewUser('AllProduct'),setDataSearched(dataProduct)}}>All Perfumes </a>
+    <a className="navbar-brand" onClick={()=>setViewUser('Cart')}>Cart </a>
+
     <form className="d-flex">
-      <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-      <button className="btn btn-outline-success" type="submit">Search</button>
+      <input className="form-control me-2" onChange={(e)=>{setWord(e.target.value),searchForPerfume(word)}} type="search" placeholder="Search" aria-label="Search"/>
+
     </form>
   </div>
 </nav>

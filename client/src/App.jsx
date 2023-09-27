@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import Login from "./ComponentForAcces/Login.jsx";
-import SignUp from "./ComponentForAcces/SignUp.jsx";
+
 import axios from "axios";
 import AdminPage from "./ComponentForAdmin/AdminPage.jsx";
 import UserPage from "./Component/UserPage.jsx";
@@ -15,11 +15,9 @@ const App = () => {
 
     const changeView = () => {
         if (view === 'login') {
-            return <Login setView={setView} login={login} />
+            return <Login setView={setView} signup={signup} login={login} />
         }
-        if (view === 'signup') {
-            return <SignUp signup={signup} login={login} />
-        }
+        
         if (view === 'AdminPage') {
             return <AdminPage getProducts={getProducts} dataProduct={dataProduct} />
         }
@@ -54,13 +52,13 @@ const App = () => {
     const login = (x) => {
         var tr = 0
         for (var i = 0; i < dataAdmin.length; i++) {
-            if (dataAdmin[i].name === x.name && dataAdmin[i].password === x.password) {
+            if (dataAdmin[i].name === x.email && dataAdmin[i].password === x.password) {
                 setView('AdminPage')
                 tr++
             }
         }
         for (var j = 0; j < dataUser.length; j++) {
-            if (dataUser[j].name === x.name && dataUser[j].password === x.password) {
+            if (dataUser[j].userName === x.email || dataUser[j].email===x.email  && dataUser[j].password === x.password) {
                 setView('UserPage')
                 tr++
             }
@@ -71,7 +69,7 @@ const App = () => {
     }
     const signup = (x) => {
         axios.post('/api/user/createUser', x)
-            .then(() => setView('login'))
+            .then(() => {setView('login'),getUserData()})
             .catch((err) => console.log(err))
     }
 
