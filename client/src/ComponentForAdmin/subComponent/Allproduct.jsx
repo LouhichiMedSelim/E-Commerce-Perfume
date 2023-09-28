@@ -1,30 +1,30 @@
 import React from "react";
-const AllProduct =({dataSearched,GetDataToUpdate})=>{
-return (
-    <div > <div class="card-group">
-        {dataSearched.map((e)=>{return (   
-                   
-       
+const AllProduct = ({ dataSearched, GetDataToUpdate }) => {
+  return (
+    <div > <div className="card-group">
+      {dataSearched.map((e) => {
+        return (
 
+          <div key={e._id} className="wrapper" >
+            <div className="product-img">
+              <img src={e.imgUrl} height="420" width="327" />
+            </div>
+            <div className="product-info">
+              <div className="product-text">
+                <h1>{e.name}</h1>
+                <h1>Quantity :{e.quantity}</h1>
+                <p></p>
+              </div>
+              <div className="product-price-btn">
+                <p><span>{e.price}</span>DT</p>
+                <button type="button" onClick={() => GetDataToUpdate(e._id)}>Update Or Delete</button>
+              </div>
+            </div>
+          </div>
 
- 
-  <div class="card" key={e._id}>
-    <img class="card-img-top" src={e.imgUrl} alt="Card image cap"/>
-    <div class="card-body">
-      <h5 class="card-title">{e.name}</h5>
-      <p class="card-text">{e.quantity}</p>
-      <p class="card-text">{e.price}</p>
-      <button type="button" onClick={()=>GetDataToUpdate(e._id)}  className="btn btn-primary">Update Or Delete</button>
-    </div>
-  </div>
- 
-
-
-
-
-)
+        )
       })}</div>
     </div>
-)
+  )
 }
 export default AllProduct

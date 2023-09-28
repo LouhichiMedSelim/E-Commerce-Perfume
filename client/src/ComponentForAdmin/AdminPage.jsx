@@ -17,7 +17,7 @@ useEffect(()=>{
     const updateProduct = (x,y) => {
 console.log(x)
         axios.put(`/api/product/updateProduct/${y}`,x)
-        .then(()=>{setViewAdmin('AllProduct'),getProducts()})
+        .then(()=>{getProducts(),setViewAdmin('AllProduct')})
         .catch((err)=>console.log(err))
 
     }
@@ -38,7 +38,7 @@ console.log(x)
     }
     const addProduct = (x) => {
         axios.post('/api/product/createProduct', x)
-            .then(() =>{ setViewAdmin('AdminPage'),getProducts()})
+            .then(() =>{getProducts(), setViewAdmin('AllProduct')})
             .catch((err) => console.log(err))
     }
     const changeViewAdmin = () => {
