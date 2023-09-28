@@ -1,6 +1,6 @@
 import React from "react";
-const AllProduct = ({ dataSearched,addToCart }) => {
-  
+const AllProduct = ({ dataSearched, addToCart }) => {
+
   return (
     <div > <div class="card-group">
       {dataSearched.map((e) => {
@@ -12,12 +12,12 @@ const AllProduct = ({ dataSearched,addToCart }) => {
             <div className="product-info">
               <div className="product-text">
                 <h1>{e.name}</h1>
-              <h1><span>{e.price}DT</span></h1>
-               
+                <h1><span>{e.price}DT</span></h1>
+
               </div>
               <div className="product-price-btn">
-              
-                <button type="button"onClick={()=>addToCart(e)}>Add To Cart</button>
+
+                <button type="button" onClick={() => addToCart(e)}>Add To Cart</button>
               </div>
             </div>
           </div>
@@ -25,7 +25,7 @@ const AllProduct = ({ dataSearched,addToCart }) => {
 
         )
       })}
-</div>
+    </div>
     </div>
 
   )

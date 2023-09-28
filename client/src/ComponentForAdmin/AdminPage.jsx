@@ -7,28 +7,28 @@ import axios from "axios";
 
 
 
-const AdminPage = ({ dataProduct ,getProducts}) => {
+const AdminPage = ({ dataProduct, getProducts }) => {
     const [viewAdmin, setViewAdmin] = useState('AllProduct')
     const [dataToUpdate, setDataToUpdate] = useState({})
-    const [dataSearched,setDataSearched]=useState(dataProduct)
-useEffect(()=>{
-   getProducts() 
-},[])
-    const updateProduct = (x,y) => {
-console.log(x)
-        axios.put(`/api/product/updateProduct/${y}`,x)
-        .then(()=>{getProducts(),setViewAdmin('AllProduct')})
-        .catch((err)=>console.log(err))
+    const [dataSearched, setDataSearched] = useState(dataProduct)
+    useEffect(() => {
+        getProducts()
+    }, [])
+    const updateProduct = (x, y) => {
+        console.log(x)
+        axios.put(`/api/product/updateProduct/${y}`, x)
+            .then(() => { getProducts(), setViewAdmin('AllProduct') })
+            .catch((err) => console.log(err))
 
     }
-    const searchForPerfume=(x)=>{
-        var arr=dataProduct.filter(e=>e.name.includes(x))
+    const searchForPerfume = (x) => {
+        var arr = dataProduct.filter(e => e.name.includes(x))
         setDataSearched(arr)
-          }
-    const deleteProduct=(x)=>{
+    }
+    const deleteProduct = (x) => {
         axios.delete(`/api/product/deleteProduct/${x}`)
-        .then(()=>{setViewAdmin('AllProduct'),getProducts()})
-        .catch((err)=>console.log(err))
+            .then(() => { setViewAdmin('AllProduct'), getProducts() })
+            .catch((err) => console.log(err))
     }
     const GetDataToUpdate = (x) => {
         console.log(x);
@@ -38,7 +38,7 @@ console.log(x)
     }
     const addProduct = (x) => {
         axios.post('/api/product/createProduct', x)
-            .then(() =>{getProducts(), setViewAdmin('AllProduct')})
+            .then(() => { getProducts(), setViewAdmin('AllProduct') })
             .catch((err) => console.log(err))
     }
     const changeViewAdmin = () => {
@@ -58,9 +58,9 @@ console.log(x)
     return (
         <div>
 
-            <Nav searchForPerfume={searchForPerfume} setViewAdmin={setViewAdmin} />
+            <Nav setDataSearched={setDataSearched} dataProduct={dataProduct} getProducts={getProducts} searchForPerfume={searchForPerfume} setViewAdmin={setViewAdmin} />
             <div>{changeViewAdmin()}</div>
-          
+
         </div>
     )
 }

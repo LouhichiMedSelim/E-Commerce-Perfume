@@ -3,10 +3,10 @@ import Nav from "./subComponentUser/NavbarUser.jsx";
 import AllProduct from "./subComponentUser/Allproduct.jsx";
 import Cart from "./subComponentUser/Cart.jsx";
 import axios from "axios";
-const UserPage = ({ dataProduct ,getProducts}) => {
+const UserPage = ({ dataProduct, getProducts }) => {
   const [viewUser, setViewUser] = useState('AllProduct')
   const [perfumeTobuy, setPerfumeToBuy] = useState([])
-const[dataSearched,setDataSearched]=useState(dataProduct)
+  const [dataSearched, setDataSearched] = useState(dataProduct)
 
 
   const addToCart = (x) => {
@@ -28,25 +28,25 @@ const[dataSearched,setDataSearched]=useState(dataProduct)
     setPerfumeToBuy(arr)
     setViewUser('AllProduct')
   }
-  const confirmBuy =()=>{
-    for(var i=0;i<perfumeTobuy.length;i++){
+  const confirmBuy = () => {
+    for (var i = 0; i < perfumeTobuy.length; i++) {
       axios.put(`/api/product/updateProductQuantity/${perfumeTobuy[i].name}`)
-      .then(()=>console.log('upd'))
-      .catch((err)=>console.log(err))
+        .then(() => console.log('upd'))
+        .catch((err) => console.log(err))
     }
     setViewUser('AllProduct')
     getProducts()
   }
   const totalToPay = () => {
-    var x=0
+    var x = 0
     for (var i = 0; i < perfumeTobuy.length; i++) {
-      x=x+perfumeTobuy[i].price
+      x = x + perfumeTobuy[i].price
     }
     return x
   }
-  const searchForPerfume=(x)=>{
-var arr=dataProduct.filter(e=>e.name.includes(x))
-setDataSearched(arr)
+  const searchForPerfume = (x) => {
+    var arr = dataProduct.filter(e => e.name.includes(x))
+    setDataSearched(arr)
   }
 
   const changeView = () => {

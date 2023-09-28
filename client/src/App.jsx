@@ -11,31 +11,30 @@ const App = () => {
     const [dataAdmin, setDataAdmin] = useState([])
     const [dataUser, setDataUser] = useState([])
     const [dataProduct, setDataProduct] = useState([])
-  
+
 
     const changeView = () => {
         if (view === 'login') {
             return <Login setView={setView} signup={signup} login={login} />
         }
-        
         if (view === 'AdminPage') {
             return <AdminPage getProducts={getProducts} dataProduct={dataProduct} />
         }
         if (view === 'UserPage') {
-            return <UserPage getProducts={getProducts} dataProduct={dataProduct}/>
+            return <UserPage getProducts={getProducts} dataProduct={dataProduct} />
         }
-       
+
     }
     useEffect(() => {
         getAdminData()
         getUserData()
         getProducts()
     }, [])
-  
-   
-    const getProducts =()=>{
+
+
+    const getProducts = () => {
         axios.get('/api/product/getAllProducts')
-        .then((res) => setDataProduct(res.data))
+            .then((res) => setDataProduct(res.data))
             .catch((err) => console.log(err))
     }
     const getAdminData = () => {
@@ -58,7 +57,7 @@ const App = () => {
             }
         }
         for (var j = 0; j < dataUser.length; j++) {
-            if (dataUser[j].userName === x.email || dataUser[j].email===x.email  && dataUser[j].password === x.password) {
+            if (dataUser[j].userName === x.email || dataUser[j].email === x.email && dataUser[j].password === x.password) {
                 setView('UserPage')
                 tr++
             }
@@ -69,7 +68,7 @@ const App = () => {
     }
     const signup = (x) => {
         axios.post('/api/user/createUser', x)
-            .then(() => {setView('login'),getUserData()})
+            .then(() => { setView('login'), getUserData() })
             .catch((err) => console.log(err))
     }
 
