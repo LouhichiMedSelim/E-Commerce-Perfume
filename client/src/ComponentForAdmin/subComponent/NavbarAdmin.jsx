@@ -6,6 +6,8 @@ const Nav =({setViewAdmin,searchForPerfume})=>{
     return (<div>
         <nav className="navbar navbar-light bg-light">
   <div className="container-fluid">
+  <p className="navbar-brand" >Admin Side </p>
+
     <a className="navbar-brand" onClick={()=>setViewAdmin('AddProduct')}>Add Perfume</a>
     <a className="navbar-brand" onClick={()=>setViewAdmin('AllProduct')}>All Perfumes</a>
     

@@ -233,3 +233,10 @@ span {
 .product-price-btn button:hover {
   background-color: #79b0a1;
 }
+.welcome{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: italic;
+  font-family: "Lucida Console", "Courier New", monospace;
+}

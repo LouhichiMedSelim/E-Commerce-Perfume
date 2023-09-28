@@ -10,7 +10,7 @@ const [email,setEmail]=useState('')
     return(
      
 <div>
-
+<h1 className="welcome">Welcome To Louhichi's Fragence</h1>
 <ul className="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
   <li className="nav-item" role="presentation">
     <a className="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#pills-login" role="tab"
